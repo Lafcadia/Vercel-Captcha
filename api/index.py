@@ -25,7 +25,7 @@ def index():
         else:
             return "0"
     else:
-        with open("app.html", encoding='utf-8') as f:
+        with open("./app.html", encoding='utf-8') as f:
             content = f.read()
         return content
 
@@ -33,7 +33,7 @@ def index():
 def view():
     global real_str
     real_str = generator()
-    with open('code.png', 'rb') as f:
+    with open('./code.png', 'rb') as f:
         content = f.read()
     return content
 
