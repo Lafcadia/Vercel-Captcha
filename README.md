@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://captcha.vercel.app/
+https://captcha.chuishen.xyz/
 
 ## How it Works
 - This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions. It uses Base64 to show the image and captcha to generate the image.
