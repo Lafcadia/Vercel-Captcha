@@ -3,6 +3,20 @@ from flask import Flask, render_template, request
 import string
 import random
 
+html = """<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <h1>This is a captcha generator.</h1>
+    <img src="code.png" alt="It's not working?">
+    <form action="/", method="POST">
+        <p>Code: <input type="text", name="yanzheng"></input></p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>"""
+
 app = Flask(__name__)
 
 def generator(name="code.png"):
@@ -25,9 +39,7 @@ def index():
         else:
             return "0"
     else:
-        with open("./app.html", encoding='utf-8') as f:
-            content = f.read()
-        return content
+        return html
 
 @app.route('/code.png')
 def view():
