@@ -1,0 +1,13 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <h1>This is a captcha generator.</h1>
+    <img src="data:;base64,{{ img_stream }}">
+    <form action="/", method="POST">
+        <p>Code: <input type="text", name="yanzheng"></input></p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

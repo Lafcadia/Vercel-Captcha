@@ -4,20 +4,6 @@ import string
 import random
 import base64
 
-html = """<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head>
-<body>
-    <h1>This is a captcha generator.</h1>
-    <img src="data:;base64,{{ img_stream }}">
-    <form action="/", method="POST">
-        <p>Code: <input type="text", name="yanzheng"></input></p>
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>"""
-
 app = Flask(__name__)
 
 def generator(name="code.png"):
@@ -40,7 +26,7 @@ def index():
         else:
             return "0"
     else:
-        return render_template(html, img_stream=streamer())
+        return render_template('index.html', img_stream=streamer())
 
 @app.route('/code.png')
 def view():
