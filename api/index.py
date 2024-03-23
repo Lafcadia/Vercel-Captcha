@@ -44,10 +44,13 @@ def index():
 @app.route('/code.png')
 def view():
     global real_str
-    real_str = generator()
-    with open('./code.png', 'rb') as f:
-        content = f.read()
-    return content
+    token = string.digits + string.ascii_letters
+    cap = random.sample(token,8)
+    token_str = ''.join(cap)
+    img = ImageCaptcha(width=400,height=150)
+    image = img.generate_image(token_str)
+    real_str = token_str
+    return image
 
 # if __name__ == '__main__':
 #     app.run(host='127.0.0.1',port='2333')
