@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 import string
 import random
 import base64
+import io
 
 app = Flask(__name__)
 
@@ -35,12 +36,14 @@ def view():
 def streamer():
     global real_str
     token = string.digits + string.ascii_letters
-    cap = random.sample(token,8)
+    cap = random.sample(token,4)
     token_str = ''.join(cap)
-    img = ImageCaptcha(width=400,height=150)
-    image = img.generate_image(token_str).tobytes()
+    img = ImageCaptcha(width=400,height=100)
+    image = img.generate_image(token_str)
+    b = io.BytesIO()
+    image.save(b, format="JPEG")
     real_str = token_str
-    return base64.b64encode(image).decode()
+    return base64.b64encode(b.getvalue()).decode()
 
-# if __name__ == '__main__':
-#     app.run(host='127.0.0.1',port='2333')
+if __name__ == '__main__':
+    app.run(host='127.0.0.1',port='2333')
