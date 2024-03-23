@@ -25,7 +25,7 @@ def index():
         else:
             return "0"
     else:
-        with open("index.html", encoding='utf-8') as f:
+        with open("app.html", encoding='utf-8') as f:
             content = f.read()
         return content
 
