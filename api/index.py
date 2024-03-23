@@ -40,10 +40,13 @@ def index():
         else:
             return "0"
     else:
-        return render_template(html, )
+        return render_template(html, img_stream=streamer())
 
 @app.route('/code.png')
 def view():
+    return streamer()
+
+def streamer():
     global real_str
     token = string.digits + string.ascii_letters
     cap = random.sample(token,8)
