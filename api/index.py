@@ -52,7 +52,7 @@ def streamer():
     cap = random.sample(token,8)
     token_str = ''.join(cap)
     img = ImageCaptcha(width=400,height=150)
-    image = img.generate_image(token_str)
+    image = img.generate_image(token_str).tobytes()
     real_str = token_str
     return base64.b64encode(image).decode()
 
