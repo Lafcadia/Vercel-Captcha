@@ -2,6 +2,7 @@ from captcha.image import ImageCaptcha
 from flask import Flask, render_template, request
 import string
 import random
+import base64
 
 html = """<html>
 <head>
@@ -9,7 +10,7 @@ html = """<html>
 </head>
 <body>
     <h1>This is a captcha generator.</h1>
-    <img src="code.png" alt="It's not working?">
+    <img src="data:;base64,{{ img_stream }}">
     <form action="/", method="POST">
         <p>Code: <input type="text", name="yanzheng"></input></p>
         <input type="submit" value="Submit">
@@ -39,7 +40,7 @@ def index():
         else:
             return "0"
     else:
-        return html
+        return render_template(html, )
 
 @app.route('/code.png')
 def view():
@@ -50,7 +51,7 @@ def view():
     img = ImageCaptcha(width=400,height=150)
     image = img.generate_image(token_str)
     real_str = token_str
-    return image
+    return base64.b64encode(image).decode()
 
 # if __name__ == '__main__':
 #     app.run(host='127.0.0.1',port='2333')
